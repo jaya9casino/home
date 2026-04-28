@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redirecting...</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="stylesheet" href="../css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+/* ============================================================
+   PLAY-NOW REDIRECT CONTROLLER
+   ------------------------------------------------------------
+   Edit REDIRECT_URL below to point at your affiliate offer.
+   Pass ?ref=xxx, ?sub=xxx or UTM params on /play-now/ and they
+   will be forwarded to the offer URL automatically.
+   ============================================================ */
+const REDIRECT_URL = "https://jaya9bd.com/?affiliate=YOUR_ID";
+
+function buildFinalUrl() {
+  try {
+    const incoming = new URL(window.location.href);
+    const out = new URL(REDIRECT_URL);
+    ["ref","sub","subid","click_id","clickid","utm_source","utm_medium","utm_campaign"].forEach(function(p){
+      if (incoming.searchParams.has(p)) {
+        out.searchParams.set(p, incoming.searchParams.get(p));
+      }
+    });
+    return out.toString();
+  } catch(e) {
+    return REDIRECT_URL;
+  }
+}
+
+window.location.replace(buildFinalUrl());
+</script>
+</head>
+<body>
+<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;flex-direction:column;gap:20px;text-align:center;padding:20px;">
+  <img src="../images/logo.webp" alt="Jaya9" style="height:60px;">
+  <p style="color:#fff;font-size:18px;">Taking you to Jaya9...</p>
+  <p style="color:#c9c4f0;font-size:14px;">If you are not redirected automatically, <a href="#" id="manual-link" style="color:#ff8a1a;">click here</a>.</p>
+</div>
+<script>
+document.getElementById("manual-link").href = buildFinalUrl();
+</script>
+</body>
+</html>

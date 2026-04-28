@@ -4,7 +4,7 @@ Generates EN and BN versions of every internal page.
 Architecture
 ------------
 - EN pages live at /<slug>/index.html  (depth 1, prefix "../")
-- BN pages live at /bn/<slug>/index.html (depth 2, prefix "../../")
+- BN pages live at /bn/<slug>/index.html (depth 2; assets use "../../", BN nav uses "../")
 - Lang switcher on each page links to its counterpart (not to home).
 - Brand tokens (Jaya9, Joya9, Jaya 9, Joya 9) are kept Latin in BN copy.
 

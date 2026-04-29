@@ -771,7 +771,7 @@ ul{list-style:none}
   border-radius:10px;
   font-size:16px;
 }
-.reg-steps h4{
+.reg-steps h3{
   font-size:16px;
   font-weight:600;
   margin-bottom:3px;
@@ -936,7 +936,7 @@ ul{list-style:none}
   border:1px solid var(--c-line);
   border-radius:6px;
 }
-.foot-col h5{
+.foot-col .footer-title{
   font-size:14px;
   margin-bottom:14px;
   color:var(--c-orange);
@@ -1262,3 +1262,24 @@ ul{list-style:none}
   .popular-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
 }
+
+
+/* Accessibility/performance patch */
+.skip-link{
+  position:absolute;
+  left:16px;
+  top:-60px;
+  z-index:999;
+  padding:10px 14px;
+  background:#fff;
+  color:#1a1452;
+  border-radius:8px;
+  font-weight:700;
+}
+.skip-link:focus{top:12px}
+main{display:block}
+.logo img{aspect-ratio:500/150;object-fit:contain}
+.foot-logo{aspect-ratio:500/150;object-fit:contain}
+.section,.prose-section{content-visibility:auto;contain-intrinsic-size:1px 900px}
+.hero,.page-hero,.toc-section{content-visibility:visible}
+

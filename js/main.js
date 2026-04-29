@@ -1,33 +1,29 @@
 // Jaya9 — minimal interactivity
 document.addEventListener('DOMContentLoaded', function () {
-
-  // Redirect target — leads to the play-now controller, which forwards to the affiliate offer
-  var REDIRECT_URL = '/play-now/';
-  var redirected = false;
-
-  function goToOffer(e) {
-    if (redirected) return;
-    redirected = true;
+  function goToOffer(form, e) {
     if (e) {
       e.preventDefault();
       e.stopPropagation();
     }
-    window.location.href = REDIRECT_URL;
+    var target = form && form.getAttribute('action') ? form.getAttribute('action') : 'play-now/';
+    window.location.href = target;
   }
 
-  // Any interaction with a form field triggers the redirect.
-  // Listen on multiple events so it fires whether the user types, pastes,
-  // toggles a checkbox, picks from a select, or just focuses the field.
-  var fieldSelector = 'input, textarea, select';
-  var triggerEvents = ['focus', 'input', 'change', 'keydown', 'paste', 'click'];
+  // Users can type, paste and edit fields normally.
+  // Redirect happens only on Enter or on explicit form submit.
+  document.querySelectorAll('form').forEach(function (form) {
+    form.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        goToOffer(form, e);
+      }
+    });
 
-  document.querySelectorAll(fieldSelector).forEach(function (field) {
-    triggerEvents.forEach(function (ev) {
-      field.addEventListener(ev, goToOffer, { capture: true });
+    form.addEventListener('submit', function (e) {
+      goToOffer(form, e);
     });
   });
 
-  // Smooth scroll for in-page anchor links (kept for navigation UX)
+  // Smooth scroll for in-page anchor links.
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       var id = this.getAttribute('href');
@@ -38,13 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
           el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       }
-    });
-  });
-
-  // Submit-button safety net: if a form submit somehow fires, redirect too
-  document.querySelectorAll('form').forEach(function (f) {
-    f.addEventListener('submit', function (e) {
-      goToOffer(e);
     });
   });
 });

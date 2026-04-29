@@ -5,29 +5,25 @@ document.addEventListener('DOMContentLoaded', function () {
       e.preventDefault();
       e.stopPropagation();
     }
-    var target = form && form.getAttribute('action') ? form.getAttribute('action') : 'play-now/';
-    window.location.href = target;
+    var target = (form && form.getAttribute('action')) || 'play-now/';
+    window.location.assign(target);
   }
 
-  // Users can type, paste and edit fields normally.
-  // Redirect happens only on Enter or on explicit form submit.
   document.querySelectorAll('form').forEach(function (form) {
     form.addEventListener('keydown', function (e) {
       if (e.key === 'Enter') {
         goToOffer(form, e);
       }
     });
-
     form.addEventListener('submit', function (e) {
       goToOffer(form, e);
     });
   });
 
-  // Smooth scroll for in-page anchor links.
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       var id = this.getAttribute('href');
-      if (id.length > 1) {
+      if (id && id.length > 1) {
         var el = document.querySelector(id);
         if (el) {
           e.preventDefault();

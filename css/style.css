@@ -289,7 +289,7 @@ ul{list-style:none}
   margin-bottom:18px;
 }
 .hero h1{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:var(--font-display);
   font-size:clamp(40px,6vw,76px);
   line-height:1;
   letter-spacing:.5px;
@@ -388,14 +388,14 @@ ul{list-style:none}
   color:var(--c-yellow);
 }
 .section h2{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:var(--font-display);
   font-size:clamp(32px,4.5vw,56px);
   line-height:1.05;
   letter-spacing:.5px;
   margin-bottom:18px;
 }
 .section h3{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:var(--font-display);
   font-size:clamp(26px,3vw,38px);
   letter-spacing:.5px;
   margin-bottom:14px;
@@ -455,7 +455,7 @@ ul{list-style:none}
   margin-bottom:16px;
 }
 .casino-card h3{
-  font-family:'Poppins',sans-serif;
+  font-family:var(--font-main);
   font-size:18px;
   font-weight:600;
   letter-spacing:0;
@@ -717,7 +717,7 @@ ul{list-style:none}
   border-radius:999px;
 }
 .bonus-card h3{
-  font-family:'Poppins',sans-serif;
+  font-family:var(--font-main);
   font-size:20px;
   font-weight:700;
   letter-spacing:0;
@@ -786,7 +786,7 @@ ul{list-style:none}
   box-shadow:var(--shadow-soft);
 }
 .reg-form h3,.login-form h3{
-  font-family:'Poppins',sans-serif;
+  font-family:var(--font-main);
   font-size:22px;
   font-weight:700;
   letter-spacing:0;
@@ -991,7 +991,7 @@ ul{list-style:none}
   box-shadow:var(--shadow-soft);
 }
 .toc-title{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:var(--font-display);
   font-size:28px;
   letter-spacing:1px;
   color:var(--c-yellow);
@@ -1031,7 +1031,7 @@ ul{list-style:none}
 }
 .page-hero .eyebrow{margin-bottom:18px}
 .page-hero h1{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:var(--font-display);
   font-size:clamp(38px,5.5vw,68px);
   letter-spacing:1px;
   line-height:1.05;
@@ -1057,7 +1057,7 @@ ul{list-style:none}
   box-shadow:var(--shadow-soft);
 }
 .prose h2{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:var(--font-display);
   font-size:clamp(28px,3.2vw,40px);
   letter-spacing:.5px;
   margin:32px 0 14px;
@@ -1065,7 +1065,7 @@ ul{list-style:none}
 }
 .prose h2:first-child{margin-top:0}
 .prose h3{
-  font-family:'Poppins',sans-serif;
+  font-family:var(--font-main);
   font-size:20px;
   font-weight:700;
   letter-spacing:0;
@@ -1283,3 +1283,19 @@ main{display:block}
 .section,.prose-section{content-visibility:auto;contain-intrinsic-size:1px 900px}
 .hero,.page-hero,.toc-section{content-visibility:visible}
 
+
+/* Final PageSpeed stability patch */
+:root{
+  --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  --font-display: Impact, 'Arial Narrow', system-ui, sans-serif;
+}
+body{font-family:var(--font-main);text-rendering:optimizeSpeed;}
+img{display:block;max-width:100%;height:auto;}
+.logo img{width:140px;height:auto;aspect-ratio:500/150;object-fit:contain;}
+.foot-logo{width:126px;height:auto;aspect-ratio:500/150;object-fit:contain;}
+.hero-visual{min-height:310px;display:flex;align-items:center;justify-content:center;}
+.hero-visual img{aspect-ratio:1694/929;width:100%;height:auto;max-width:560px;}
+.hero-inner{min-height:560px;}
+.reg-form input,.reg-form select,.login-form input{user-select:text;-webkit-user-select:text;}
+@media (max-width:780px){.hero-inner{min-height:auto}.hero-visual{min-height:230px}.hero-visual img{max-width:360px}}
+@media (max-width:480px){.hero-visual{min-height:190px}.hero-visual img{max-width:320px}}
